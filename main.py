@@ -7,7 +7,7 @@ from typing import List
 app = FastAPI()
 
 # Mount static files at /static instead of /
-app.mount("/static", StaticFiles(directory="static"), name="static")
+# app.mount("/static", StaticFiles(directory="static"), name="static")
 
 class Product(BaseModel):
     id: int
@@ -30,9 +30,9 @@ products = [
     Product(id=10, name="Notebook", price=150, description="A5 size ruled notebook (100 pages)", category="Stationery", in_stock=True)
 ]
 
-@app.get("/")
-def read_index():
-    return FileResponse("static/index.html")
+# @app.get("/")
+# def read_index():
+#     return FileResponse("static/index.html")
 
 @app.get("/products", response_model=List[Product])
 def get_products():
