@@ -3,8 +3,19 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
 from typing import List
+from fastapi.middleware.cors import CORSMiddleware
+
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Or restrict to ["https://your-frontend.vercel.app"]
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 # Mount static files at /static instead of /
 # app.mount("/static", StaticFiles(directory="static"), name="static")
